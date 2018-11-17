@@ -1,0 +1,81 @@
+<!-- <div class="fixed">
+	<h1 >
+	  Showing {{currentProspectsCollection?._sent}} of {{currentProspectsCollection?._count}} records
+	</h1>
+	<button (click)="ReLoadCollection()" id="reloadButton" title="Start Over">Start Over</button>
+	<button (click)="GotoTop()" id="topButton" title="Go to top">Go to Top</button>
+</div>
+
+<table (window:scroll)="LoadMore()" border="1">
+  <tr class="fixedColumn">
+    <clr-dg-column>Name</clr-dg-column>
+    <clr-dg-column>Campaign</clr-dg-column>
+    <clr-dg-column>Segment</clr-dg-column>
+    <clr-dg-column>Attempts</clr-dg-column>
+    <clr-dg-column>ID</clr-dg-column>
+    <clr-dg-column>Call Status</clr-dg-column>
+    <clr-dg-column>Calling Pool</clr-dg-column>
+    <clr-dg-column>Segment Group</clr-dg-column>
+    <clr-dg-column>Last Gift</clr-dg-column>
+    <clr-dg-column>Last Gift Date</clr-dg-column>
+    <clr-dg-column>State</clr-dg-column>
+    <clr-dg-column>City</clr-dg-column>
+    <clr-dg-column>Last Call Date</clr-dg-column>
+
+
+  </tr>
+  <tr *ngFor="let prospect of currentProspectsCollection?.entities">
+    <clr-dg-cell>{{prospect.nameFull}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.campaignName}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.segmentDisplayName}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.attempts}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.externalID}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.callStatus}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.callingPool}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.segGroup}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.priorGift1Amount}}</clr-dg-cell>
+    <clr-dg-cell>{{formartDateString(prospect.priorGift1Date)}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.addressState}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.addressCity}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.lastCallDate}}</clr-dg-cell>
+  </tr>
+</table> -->
+<clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading" >
+  <clr-dg-column>Name</clr-dg-column>
+  <clr-dg-column>Campaign</clr-dg-column>
+  <clr-dg-column>Segment</clr-dg-column>
+  <clr-dg-column>Attempts</clr-dg-column>
+  <clr-dg-column>ID</clr-dg-column>
+  <clr-dg-column>Call Status</clr-dg-column>
+  <clr-dg-column>Calling Pool</clr-dg-column>
+  <clr-dg-column>Segment Group</clr-dg-column>
+  <clr-dg-column>Last Gift</clr-dg-column>
+  <clr-dg-column>Last Gift Date</clr-dg-column>
+  <clr-dg-column>State</clr-dg-column>
+  <clr-dg-column>City</clr-dg-column>
+  <clr-dg-column>Last Call Date</clr-dg-column>
+
+  <clr-dg-row *ngFor="let prospect of currentProspectsCollection">
+    <clr-dg-cell>{{prospect.nameFull}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.campaignName}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.segmentDisplayName}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.attempts}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.externalID}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.callStatus}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.callingPool}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.segGroup}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.priorGift1Amount}}</clr-dg-cell>
+    <clr-dg-cell>{{formartDateString(prospect.priorGift1Date)}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.addressState}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.addressCity}}</clr-dg-cell>
+    <clr-dg-cell>{{prospect.lastCallDate}}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    
+    <clr-dg-pagination #pagination  [clrDgPageSize]="20" [clrDgTotalItems]="prospectCollectionLength" [clrDgPage] = "currentPage">
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+    of {{pagination.totalItems}} prospects
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>
